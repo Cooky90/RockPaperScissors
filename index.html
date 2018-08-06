@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Scissors</title>
+	<script type="text/javascript">
+		function computerPlay() {
+			let random_number = (Math.random() * (3 - 1 + 1) ) << 0;
+			switch (random_number) {
+				case 0:
+				return 'rock';
+				case 1:
+				return 'paper';
+				case 2:
+				return 'scissors';
+			}
+		}
+
+		function playRound(playerSelection, computerSelection) {
+			var playerSelection = playerSelection.toLowerCase();
+			var computerSelection = computerSelection.toLowerCase();
+
+			switch (calculateResult(playerSelection, computerSelection)) {
+				case "won":
+				return "Player wins!";
+				case "draw":
+				return "It's a tie!";
+				case "lose":
+				return "CPU wins!";
+			} 
+		}
+
+		function calculateResult(selection_one, selection_two) {
+			if (selection_one == selection_two) {
+				return "draw";
+			}
+
+			if ((selection_one == 'rock') && (selection_two == 'paper')) {
+				return "lose";
+			} else if ((selection_one == 'rock') && (selection_two == 'scissors')) {
+				return "win";
+			}
+
+			if ((selection_one == 'paper') && (selection_two == 'scissors')) {
+				return "lose";
+			} else if ((selection_one == 'paper') && (selection_two == 'rock')) {
+				return "win";
+			}
+
+			if ((selection_one == 'scissors') && (selection_two == 'rock')) {
+				return "lose";
+			} else if ((selection_one == 'scissors') && (selection_two == 'paper')) {
+				return "win";
+			}
+		}
+
+		function game() {
+			var playerSelection = prompt("Please select, rock paper or scissors:");
+			var computerSelection = computerPlay();
+			return playRound(playerSelection,computerSelection);
+		}
+
+		alert(game());
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>
