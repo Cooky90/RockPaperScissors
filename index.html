@@ -1,9 +1,35 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
+	<div id="loadOverlay" style="background-color:#333; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;"></div>
 	<title>Rock Paper Scissors</title>
+	<link rel="stylesheet" type="text/css" href="sheets.css"></style>
+</head>
+<body>
+	<h1 class="center">Rock, Paper, Scissors Game</h1>
+
+	<h2 class="center">Score Tracker:</h2>
+	<table align="center" class="center">
+		<tr>
+			<th>Player</th>
+			<th>CPU</th>
+		</tr>
+		<tr>
+			<th>0</th>
+			<th>0</th>	
+		</tr>
+	</table>
+
+	<img src="images\paper.png" style="display:inline-block; float: left" onclick="testing()" border="5">
+	<img src="images\rock.png" style="display:inline-block; float: middle" border="5">
+	<img src="images\scissors.png" style="display:inline-block; float: right" border="5">
+
+
 	<script type="text/javascript">
+
+		function testing(){
+			alert("HELLO");
+		}
 		function computerPlay() {
 			let random_number = (Math.random() * (3 - 1 + 1) ) << 0;
 			switch (random_number) {
@@ -18,10 +44,14 @@
 
 		function playRound(playerSelection, computerSelection) {
 			var playerSelection = playerSelection.toLowerCase();
+			// validity check
+			if (playerSelection != ("rock" || "paper" || "scissors")){
+				return "Invalid Selection!";
+			}
 			var computerSelection = computerSelection.toLowerCase();
 
 			switch (calculateResult(playerSelection, computerSelection)) {
-				case "won":
+				case "win":
 				return "Player wins!";
 				case "draw":
 				return "It's a tie!";
@@ -57,14 +87,11 @@
 		function game() {
 			var playerSelection = prompt("Please select, rock paper or scissors:");
 			var computerSelection = computerPlay();
+			console.log(` Player chose ${playerSelection}, CPU chose ${computerSelection}`);
 			return playRound(playerSelection,computerSelection);
 		}
-
-		alert(game());
 		
-	</script>
-</head>
-<body>
+	</script>	
 
 </body>
 </html>

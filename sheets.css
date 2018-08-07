@@ -1,0 +1,36 @@
+body {
+    background-color: white;
+}
+#loadOverlay{display: none;}
+
+.center {
+	text-align: center;
+}
+
+.right-img {
+    display: block;
+    margin-left: auto;
+    padding: 50px;
+}
+
+.right-img {
+    display: block;
+    margin-left: auto;
+    padding: 50px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
