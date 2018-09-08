@@ -15,21 +15,22 @@
 			<th>CPU</th>
 		</tr>
 		<tr>
-			<th>0</th>
-			<th>0</th>	
+			<th id="player_score"></th>
+			<th id="cpu_score"></th>	
 		</tr>
 	</table>
-
-	<img src="images\paper.png" style="display:inline-block; float: left" onclick="testing()" border="5">
-	<img src="images\rock.png" style="display:inline-block; float: middle" border="5">
-	<img src="images\scissors.png" style="display:inline-block; float: right" border="5">
-
+	<div class="buttons">
+		<img src="images\paper.png" id="paper" style="display:inline-block; float: left" border="5">
+		<img src="images\rock.png" id="rock" style="display:inline-block; float: middle" border="5">
+		<img src="images\scissors.png" id="scissors" style="display:inline-block; float: right" border="5">
+	</div>
 
 	<script type="text/javascript">
 
 		function testing(){
 			alert("HELLO");
 		}
+
 		function computerPlay() {
 			let random_number = (Math.random() * (3 - 1 + 1) ) << 0;
 			switch (random_number) {
@@ -43,12 +44,12 @@
 		}
 
 		function playRound(playerSelection, computerSelection) {
-			var playerSelection = playerSelection.toLowerCase();
+			//var playerSelection = playerSelection.toLowerCase();
 			// validity check
-			if (playerSelection != ("rock" || "paper" || "scissors")){
-				return "Invalid Selection!";
-			}
-			var computerSelection = computerSelection.toLowerCase();
+			//if (playerSelection != ("rock" || "paper" || "scissors")){
+			//	return "Invalid Selection!";
+			//}
+			//var computerSelection = computerSelection.toLowerCase();
 
 			switch (calculateResult(playerSelection, computerSelection)) {
 				case "win":
@@ -84,12 +85,40 @@
 			}
 		}
 
-		function game() {
-			var playerSelection = prompt("Please select, rock paper or scissors:");
+		function updateScore(result) {
+			if (result == "win") {
+				playerScoreValue += 1;
+				document.getElementById('player_score').innerHTML = playerScoreValue;
+			} else if (result == "lose") {
+				cpuScoreValue += 1;
+				document.getElementById('cpu_score').innerHTML = cpuScoreValue;
+			}
+		}
+
+		function game(playerSelection) {
 			var computerSelection = computerPlay();
 			console.log(` Player chose ${playerSelection}, CPU chose ${computerSelection}`);
-			return playRound(playerSelection,computerSelection);
+			console.log(playRound(playerSelection,computerSelection));
+			console.log(updateScore(calculateResult(playerSelection, computerSelection)));
 		}
+
+		//player score intialise
+		const player_score = document.getElementById('player_score');
+		var playerScoreValue = 0;
+		document.getElementById('player_score').innerHTML = playerScoreValue;
+
+		//cpu score initialise
+		const cpu_score = document.getElementById('cpu_score');
+		var cpuScoreValue = 0;
+		document.getElementById('cpu_score').innerHTML = cpuScoreValue;
+
+
+		var buttons = Array.from(document.getElementsByClassName('buttons'));
+		console.log(buttons);
+		buttons.forEach(button => button.addEventListener('click', function(e){
+			console.log(game(e.target.id));
+		}));
+
 		
 	</script>	
 
